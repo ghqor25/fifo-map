@@ -1,5 +1,5 @@
 {
-  "name": "@songbaek/fifomap",
+  "name": "@songbaek/fifo-map",
   "version": "0.0.0",
   "type": "module",
   "packageManager": "yarn@3.5.1",
