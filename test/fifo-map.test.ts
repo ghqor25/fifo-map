@@ -1,4 +1,4 @@
-import { FifoMap } from './fifo-map.js';
+import { FifoMap } from '../src/fifo-map.js';
 
 describe('FifoMap', () => {
    describe('constructor', () => {
