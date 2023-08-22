@@ -1,11 +1,11 @@
 # Fifo-map
 
 Simple FIFO behavior map cache using Map(key,value) and Array(for improve fifo performance). \
-If you're usecase can be enough with 'get'(Fast read), 'put'(Put item & FIFO manage when size is full), 'delete'(Invalidate on your own), \
+If your usecase can be enough with 'get'(Fast read), 'put'(Put item & FIFO manage when size is full), 'delete'(Invalidate on your own), 
 it will be fast-read choice.
 
 ## Memory Usage
-Caching N items: N Map items, N ~ 2N Array items(When using delete() frequently, 2N Array items can be created) \
+Caching N items: N Map items, N ~ 2N Array items(When using delete() frequently, maximum 2N Array items can be created) \
 
 
 ## Examples:
@@ -28,7 +28,7 @@ const value = fifoMap.get( key );
 
 `fifoMap.put( key, value )`
 
-Put item. If size is full, it deletes item as FIFO and return old item as `{ key, value }`, otherwise return `undefined`.
+Put item. If size is full, it deletes item as FIFO and return deleted item as `{ key, value }`, otherwise return `undefined`.
 
 ```js
 const oldItem = fifoMap.put( key, value );
@@ -38,7 +38,7 @@ const oldItem = fifoMap.put( key, value );
 
 `fifoMap.delete( key )`
 
-Delete item. It will return `{ key, value }` if key matches, otherwise return `undefined`.
+Delete item if exists. It will return `{ key, value }` if key matches, otherwise return `undefined`.
 
 ```js
 const deletedItem = fifoMap.delete( key );
