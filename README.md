@@ -1,8 +1,57 @@
-# fifo-map
+# Fifo-map
 
-Simple map cache using Map and Array(for improve fifo performance). \
-Memory use(N items): N Map items, N ~ 2N Array items(When using delete() frequently, maximum 2N Array items can be created) \
+Simple FIFO behavior map cache using Map(key,value) and Array(for improve fifo performance). \
+If you're usecase can be enough with 'get'(Fast read), 'put'(Put item & FIFO manage when size is full), 'delete'(Invalidate on your own), \
+it will be fast-read choice.
 
-Only has get(same as Map.get(). So fast because it does nothing more.), \
-put(FIFO handling if size is full), \
-delete(delete and manage Array) \
+## Memory Usage
+Caching N items: N Map items, N ~ 2N Array items(When using delete() frequently, 2N Array items can be created) \
+
+
+## Examples:
+### Init:
+```js
+const fifoMap  = new FifoMap({maxSize: 10000});
+```
+
+### Get:
+
+`fifoMap.get( key )`
+
+Get value as key matches. It will return `value` if key matches, otherwise return `undefined`.
+
+```js
+const value = fifoMap.get( key );
+```
+
+### Put:
+
+`fifoMap.put( key, value )`
+
+Put item. If size is full, it deletes item as FIFO and return old item as `{ key, value }`, otherwise return `undefined`.
+
+```js
+const oldItem = fifoMap.put( key, value );
+```
+
+### Delete:
+
+`fifoMap.delete( key )`
+
+Delete item. It will return `{ key, value }` if key matches, otherwise return `undefined`.
+
+```js
+const deletedItem = fifoMap.delete( key );
+```
+
+### Clear:
+
+`fifoMap.clear()`
+
+clear all items.
+
+```js
+fifoMap.clear()
+```
+
+
