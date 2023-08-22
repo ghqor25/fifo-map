@@ -1,7 +1,7 @@
 # Fifo-map
 
 Simple FIFO behavior map cache using Map(key,value) and Array(for improving FIFO performance). \
-If your usecase can be enough with get(Fast read), put(Put item & FIFO manage when size is full), delete(Invalidate item on your own), 
+If your usecase can be enough with get(read item), put(put item & FIFO manage when size is full), delete(invalidate item on your own), 
 it will be fast-read choice.
 
 ## Memory Usage
